@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="footer-bottom">
 
         <p>
-          Copyright © 2024 Shopping Cart App
+         Shopping Cart App
         </p>
 
       </div>
