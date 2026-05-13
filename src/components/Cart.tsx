@@ -11,8 +11,7 @@ type CartProps = {
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   cartItems: CartItem[];
 
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
+ 
   removeItem: (id: number) => void;
 };
 
@@ -20,8 +19,6 @@ const Cart = ({
   cartOpen,
   setCartOpen,
   cartItems,
-  increaseQty,
-  decreaseQty,
   removeItem,
 }: CartProps) => {
 
@@ -89,24 +86,9 @@ const Cart = ({
                       <h4>{item.name}</h4>
 
                       <p>₹{item.price}</p>
-
-                      <div className="qty-buttons">
-
-                        <button
-                          onClick={() => decreaseQty(item.id)}
-                        >
-                          -
-                        </button>
-
-                        <span>{item.qty}</span>
-
-                        <button
-                          onClick={() => increaseQty(item.id)}
-                        >
-                          +
-                        </button>
-
-                      </div>
+<p>
+  Quantity: {item.qty}
+</p>
 
                     </div>
 

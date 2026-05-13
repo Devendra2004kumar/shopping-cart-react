@@ -28,7 +28,10 @@ function App() {
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = (
+  product: Product,
+  quantity: number
+) => {
 
     const existingItem = cartItems.find((item) => {
       return item.id === product.id;
@@ -41,7 +44,7 @@ function App() {
         if (item.id === product.id) {
           return {
             ...item,
-            qty: item.qty + 1,
+            qty: item.qty + quantity,
           };
         }
 
@@ -54,7 +57,7 @@ function App() {
 
       const newItem: CartItem = {
         ...product,
-        qty: 1,
+        qty: quantity,
       };
 
       setCartItems([
@@ -64,42 +67,7 @@ function App() {
     }
   };
 
-  const increaseQty = (id: number) => {
-
-    const updatedCart = cartItems.map((item) => {
-
-      if (item.id === id) {
-        return {
-          ...item,
-          qty: item.qty + 1,
-        };
-      }
-
-      return item;
-    });
-
-    setCartItems(updatedCart);
-  };
-
-  const decreaseQty = (id: number) => {
-
-    const updatedCart = cartItems
-      .map((item) => {
-
-        if (item.id === id) {
-          return {
-            ...item,
-            qty: item.qty - 1,
-          };
-        }
-
-        return item;
-      })
-      .filter((item) => item.qty > 0);
-
-    setCartItems(updatedCart);
-  };
-
+ 
   const removeItem = (id: number) => {
 
     const updatedCart = cartItems.filter((item) => {
@@ -121,8 +89,6 @@ function App() {
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
         cartItems={cartItems}
-        increaseQty={increaseQty}
-        decreaseQty={decreaseQty}
         removeItem={removeItem}
       />
 

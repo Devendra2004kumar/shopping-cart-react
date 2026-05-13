@@ -133,6 +133,7 @@ body {
   cursor: pointer;
 
   transition: 0.3s;
+
 }
 
 .card button:hover {
@@ -253,30 +254,7 @@ body {
   color: #374151;
 }
 
-.qty-buttons {
-  display: flex;
-  align-items: center;
 
-  gap: 10px;
-}
-
-.qty-buttons button {
-  width: 28px;
-  height: 28px;
-
-  border: none;
-  border-radius: 4px;
-
-  background-color: #1e1b4b;
-  color: white;
-
-  cursor: pointer;
-}
-
-.qty-buttons span {
-  font-size: 16px;
-  font-weight: bold;
-}
 
 .remove-btn {
   border: none;
@@ -403,4 +381,48 @@ body {
   .footer-bottom p {
     font-size: 14px;
   }
+
+}
+
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 10px;
+
+  padding: 0 15px;
+}
+
+.qty-box {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.qty-box button {
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 4px;
+
+  background-color: #1e1b4b;
+  color: white;
+
+  cursor: pointer;
+}
+
+.qty-box span {
+  min-width: 20px;
+
+  text-align: center;
+
+  font-size: 16px;
+  font-weight: bold;
 }
