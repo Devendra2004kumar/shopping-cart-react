@@ -9,69 +9,73 @@ type Product = {
 
 type ProductCardProps = {
   product: Product;
+
   addToCart: (
-  product: Product,
-  quantity: number
-) => void;
+    product: Product,
+    quantity: number
+  ) => void;
 };
 
 const ProductCard = ({
   product,
   addToCart,
 }: ProductCardProps) => {
+
   const [quantity, setQuantity] = useState(1);
 
-
   return (
-  <div className="card">
 
-    <img
-      src={product.image}
-      alt={product.name}
-    />
+    <div className="card">
 
-    <h3>{product.name}</h3>
+      <img
+        src={product.image}
+        alt={product.name}
+      />
 
-    <p>₹ {product.price}</p>
+      <h3>{product.name}</h3>
 
-    <div className="card-bottom">
+      <p>₹ {product.price}</p>
 
-      <div className="qty-box">
+      <div className="card-footer">
+
+        <div className="qty-box">
+
+          <button
+            onClick={() => {
+
+              if (quantity > 1) {
+                setQuantity(quantity - 1);
+              }
+
+            }}
+          >
+            -
+          </button>
+
+          <span>{quantity}</span>
+
+          <button
+            onClick={() => {
+              setQuantity(quantity + 1);
+            }}
+          >
+            +
+          </button>
+
+        </div>
 
         <button
-          onClick={() => {
-
-            if (quantity > 1) {
-              setQuantity(quantity - 1);
-            }
-
-          }}
+          className="add-btn"
+          onClick={() => addToCart(product, quantity)}
         >
-          -
-        </button>
-
-        <span>{quantity}</span>
-
-        <button
-          onClick={() => {
-            setQuantity(quantity + 1);
-          }}
-        >
-          +
+          ADD TO CART
         </button>
 
       </div>
 
-      <button
-        onClick={() => addToCart(product, quantity)}
-      >
-        Add To Cart
-      </button>
-
     </div>
 
-  </div>
-);
+  );
 };
 
 export default ProductCard;
