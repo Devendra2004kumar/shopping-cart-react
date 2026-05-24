@@ -6,6 +6,8 @@ type Product = {
   title: string;
   price: number;
   image: string;
+  description: string;
+  category: string;
 };
 
 type ProductListProps = {
@@ -44,23 +46,30 @@ const ProductList = ({
   }, []);
 
   return (
-    <div className="products-container">
+  <div className="products-container">
 
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={{
-  id: product.id,
-  name: product.title,
-  price: product.price,
-  image: product.image,
-}}
-          addToCart={addToCart}
-        />
-      ))}
+    {products.map((product) => (
 
-    </div>
-  );
+      <ProductCard
+        key={product.id}
+
+        product={{
+          id: product.id,
+          name: product.title,
+          price: product.price,
+          image: product.image,
+          description: product.description,
+          category: product.category,
+        }}
+
+        addToCart={addToCart}
+      />
+
+    ))}
+
+   </div>
+);
+
 };
 
 export default ProductList;

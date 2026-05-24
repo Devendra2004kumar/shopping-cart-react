@@ -1,10 +1,15 @@
 import { useState } from "react";
 
-type Product = {
+import "./ProductCard.css";
+
+
+  type Product = {
   id: number;
   name: string;
   price: number;
   image: string;
+  description: string;
+  category: string;
 };
 
 type ProductCardProps = {
@@ -27,14 +32,30 @@ const ProductCard = ({
 
     <div className="card">
 
-      <img
-        src={product.image}
-        alt={product.name}
-      />
+      <div className="card-image">
 
-      <h3>{product.name}</h3>
+        <img
+          src={product.image}
+          alt={product.name}
+        />
 
-      <p>₹ {product.price}</p>
+      </div>
+
+      <div className="card-content">
+                   <span className="category">
+                  {product.category.toUpperCase()}
+                   </span>
+        <h3>{product.name}</h3>
+
+      <p className="description">
+  {product.description}
+</p>
+
+        <p className="price">
+          ₹ {product.price}
+        </p>
+
+      </div>
 
       <div className="card-footer">
 
