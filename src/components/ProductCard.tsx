@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import "./ProductCard.css";
+import { Link } from "react-router-dom";
 
-
-  type Product = {
+type Product = {
   id: number;
   name: string;
   price: number;
@@ -30,71 +30,91 @@ const ProductCard = ({
 
   return (
 
-    <div className="card">
+    <Link
+      to={`/detail/${product.id}`}
+      className="card-link"
+    >
 
-      <div className="card-image">
+      <div className="card">
 
-        <img
-          src={product.image}
-          alt={product.name}
-        />
+        <div className="card-image">
+          <img
+            src={product.image}
+            alt={product.name}
+          />
 
-      </div>
+        </div>
 
-      <div className="card-content">
-                   <span className="category">
-                  {product.category.toUpperCase()}
-                   </span>
-        <h3>{product.name}</h3>
+        <div className="card-content">
 
-      <p className="description">
-  {product.description}
-</p>
+          <span className="category">
+            {product.category.toUpperCase()}
+          </span>
 
-        <p className="price">
-          ₹ {product.price}
-        </p>
+          <h3>{product.name}</h3>
 
-      </div>
+          <p className="description">
+            {product.description}
+          </p>
 
-      <div className="card-footer">
+          <p className="price">
+            ₹ {product.price}
+          </p>
 
-        <div className="qty-box">
+        </div>
+
+        <div className="card-footer">
+
+          <div className="qty-box">
+
+            <button
+              onClick={(e) => {
+
+                e.preventDefault();
+
+                if (quantity > 1) {
+                  setQuantity(quantity - 1);
+                }
+
+              }}
+            >
+              -
+            </button>
+
+            <span>{quantity}</span>
+
+            <button
+              onClick={(e) => {
+
+                e.preventDefault();
+
+                setQuantity(quantity + 1);
+
+              }}
+            >
+              +
+            </button>
+
+          </div>
 
           <button
-            onClick={() => {
+            className="add-btn"
+            onClick={(e) => {
 
-              if (quantity > 1) {
-                setQuantity(quantity - 1);
-              }
+              e.preventDefault();
+
+              addToCart(product, quantity);
 
             }}
           >
-            -
-          </button>
-
-          <span>{quantity}</span>
-
-          <button
-            onClick={() => {
-              setQuantity(quantity + 1);
-            }}
-          >
-            +
+            ADD TO CART
           </button>
 
         </div>
 
-        <button
-          className="add-btn"
-          onClick={() => addToCart(product, quantity)}
-        >
-          ADD TO CART
-        </button>
-
       </div>
 
-    </div>
+    </Link>
 
   );
 };
