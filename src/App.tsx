@@ -2,10 +2,17 @@ import { useState } from "react";
 
 import "./App.css";
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
+import ProductDetails from "./components/ProductDetails";
 
 type Product = {
   id: number;
@@ -29,9 +36,9 @@ function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addToCart = (
-  product: Product,
-  quantity: number
-) => {
+    product: Product,
+    quantity: number
+  ) => {
 
     const existingItem = cartItems.find((item) => {
       return item.id === product.id;
@@ -66,8 +73,6 @@ function App() {
       ]);
     }
   };
-
- 
   const removeItem = (id: number) => {
 
     const updatedCart = cartItems.filter((item) => {
@@ -78,7 +83,8 @@ function App() {
   };
 
   return (
-    <>
+
+    <BrowserRouter>
 
       <Navbar
         setCartOpen={setCartOpen}
@@ -92,11 +98,27 @@ function App() {
         removeItem={removeItem}
       />
 
-      <ProductList addToCart={addToCart} />
+      <Routes>
 
-      <Footer />
+        <Route
+          path="/"
+          element={
+            <>
+              <ProductList addToCart={addToCart} />
+              <Footer />
+              </>
+          }
+        />
 
-    </>
+        <Route
+          path="/detail/:id"
+          element={<ProductDetails />}
+        />
+
+      </Routes>
+
+    </BrowserRouter>
+
   );
 }
 

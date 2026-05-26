@@ -11,12 +11,15 @@ type Product = {
 };
 
 type ProductListProps = {
-  addToCart: (product: {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  },
+  addToCart: (
+    product: {
+      id: number;
+      name: string;
+      price: number;
+      image: string;
+      description: string;
+      category: string;
+    },
     quantity: number
   ) => void;
 };
@@ -35,41 +38,42 @@ const ProductList = ({
         "https://fakestoreapi.com/products"
       );
 
-      const data: Product[] = await response.json();
+      const data: Product[] =
+        await response.json();
 
       setProducts(data);
     };
 
     getProducts();
 
-
   }, []);
 
   return (
-  <div className="products-container">
 
-    {products.map((product) => (
+    <div className="products-container">
 
-      <ProductCard
-        key={product.id}
+      {products.map((product) => (
 
-        product={{
-          id: product.id,
-          name: product.title,
-          price: product.price,
-          image: product.image,
-          description: product.description,
-          category: product.category,
-        }}
+        <ProductCard
+          key={product.id}
 
-        addToCart={addToCart}
-      />
+          product={{
+            id: product.id,
+            name: product.title,
+            price: product.price,
+            image: product.image,
+            description: product.description,
+            category: product.category,
+          }}
 
-    ))}
+          addToCart={addToCart}
+        />
 
-   </div>
-);
+      ))}
 
+    </div>
+
+  );
 };
 
 export default ProductList;

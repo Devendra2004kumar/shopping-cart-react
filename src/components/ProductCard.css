@@ -142,3 +142,10 @@
 .add-btn:hover {
   background: #221a74;
 }
+
+
+
+.card-link{
+  text-decoration: none;
+  color: inherit;
+}

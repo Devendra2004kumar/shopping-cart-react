@@ -75,8 +75,8 @@ const ProductDetails = () => {
           </span>
 
           <div className="details-rating">
-            ⭐⭐⭐⭐☆
-            <span>(259)</span>
+  
+            <span></span>
           </div>
 
           <h2 className="details-price">

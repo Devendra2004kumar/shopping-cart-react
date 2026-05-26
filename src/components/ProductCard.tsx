@@ -26,7 +26,40 @@ const ProductCard = ({
   addToCart,
 }: ProductCardProps) => {
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] =
+    useState(1);
+
+  const decreaseQty = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+
+    e.preventDefault();
+
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+
+  };
+
+  const increaseQty = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+
+    e.preventDefault();
+
+    setQuantity(quantity + 1);
+
+  };
+
+  const handleAddToCart = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+
+    e.preventDefault();
+
+    addToCart(product, quantity);
+
+  };
 
   return (
 
@@ -67,31 +100,13 @@ const ProductCard = ({
 
           <div className="qty-box">
 
-            <button
-              onClick={(e) => {
-
-                e.preventDefault();
-
-                if (quantity > 1) {
-                  setQuantity(quantity - 1);
-                }
-
-              }}
-            >
+  <button onClick={decreaseQty}>
               -
             </button>
 
             <span>{quantity}</span>
 
-            <button
-              onClick={(e) => {
-
-                e.preventDefault();
-
-                setQuantity(quantity + 1);
-
-              }}
-            >
+            <button onClick={increaseQty}>
               +
             </button>
 
@@ -99,13 +114,7 @@ const ProductCard = ({
 
           <button
             className="add-btn"
-            onClick={(e) => {
-
-              e.preventDefault();
-
-              addToCart(product, quantity);
-
-            }}
+            onClick={handleAddToCart}
           >
             ADD TO CART
           </button>
