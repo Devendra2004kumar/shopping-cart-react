@@ -27,7 +27,7 @@ const ProductCard = ({
 }: ProductCardProps) => {
 
   const [quantity, setQuantity] =
-    useState(1);
+    useState(0);
 
   const decreaseQty = (
     e: React.MouseEvent<HTMLButtonElement>
@@ -35,7 +35,7 @@ const ProductCard = ({
 
     e.preventDefault();
 
-    if (quantity > 1) {
+    if (quantity > 0) {
       setQuantity(quantity - 1);
     }
 
@@ -57,6 +57,8 @@ const ProductCard = ({
 
     e.preventDefault();
 
+    if (quantity === 0) return;
+
     addToCart(product, quantity);
 
   };
@@ -75,7 +77,6 @@ const ProductCard = ({
             src={product.image}
             alt={product.name}
           />
-
         </div>
 
         <div className="card-content">
@@ -100,7 +101,7 @@ const ProductCard = ({
 
           <div className="qty-box">
 
-  <button onClick={decreaseQty}>
+            <button onClick={decreaseQty}>
               -
             </button>
 

@@ -1,0 +1,60 @@
+.navbar{
+  width:100%;
+  height:95px;
+  background:#1b1850;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 45px;
+  box-sizing:border-box;
+}
+
+.navbar h1{
+  color:white;
+  font-size:32px;
+  font-weight:700;
+  margin:0;
+}
+
+.nav-controls{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.search-box{
+  width:280px;
+  height:42px;
+  border:none;
+  outline:none;
+  border-radius:8px;
+  padding:0 15px;
+  font-size:15px;
+}
+
+.filter-box{
+  height:42px;
+  border:none;
+  outline:none;
+  border-radius:8px;
+  padding:0 15px;
+  font-size:15px;
+  cursor:pointer;
+  min-width:180px;
+}
+
+.cart-btn{
+  width:110px;
+  height:48px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:#1b1850;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.cart-btn:hover{
+  opacity:0.9;
+}

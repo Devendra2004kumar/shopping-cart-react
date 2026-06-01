@@ -30,65 +30,68 @@ type CartItem = {
 };
 
 function App() {
-
   const [cartOpen, setCartOpen] = useState(false);
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const [selectedCategory, setSelectedCategory] =
+    useState("all");
 
   const addToCart = (
     product: Product,
     quantity: number
   ) => {
-
-    const existingItem = cartItems.find((item) => {
-      return item.id === product.id;
-    });
+    const existingItem = cartItems.find(
+      (item) => item.id === product.id
+    );
 
     if (existingItem) {
+      const updatedCart = cartItems.map(
+        (item) => {
+          if (item.id === product.id) {
+            return {
+              ...item,
+              qty: item.qty + quantity,
+            };
+          }
 
-      const updatedCart = cartItems.map((item) => {
-
-        if (item.id === product.id) {
-          return {
-            ...item,
-            qty: item.qty + quantity,
-          };
+          return item;
         }
-
-        return item;
-      });
+      );
 
       setCartItems(updatedCart);
-
     } else {
-
-      const newItem: CartItem = {
-        ...product,
-        qty: quantity,
-      };
-
       setCartItems([
         ...cartItems,
-        newItem,
+        {
+          ...product,
+          qty: quantity,
+        },
       ]);
     }
   };
+
   const removeItem = (id: number) => {
-
-    const updatedCart = cartItems.filter((item) => {
-      return item.id !== id;
-    });
-
-    setCartItems(updatedCart);
+    setCartItems(
+      cartItems.filter(
+        (item) => item.id !== id
+      )
+    );
   };
 
   return (
-
     <BrowserRouter>
-
       <Navbar
         setCartOpen={setCartOpen}
         cartItems={cartItems}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={
+          setSelectedCategory
+        }
       />
 
       <Cart
@@ -99,14 +102,19 @@ function App() {
       />
 
       <Routes>
-
         <Route
           path="/"
           element={
             <>
-              <ProductList addToCart={addToCart} />
+              <ProductList
+                addToCart={addToCart}
+                searchTerm={searchTerm}
+                selectedCategory={
+                  selectedCategory
+                }
+              />
               <Footer />
-              </>
+            </>
           }
         />
 
@@ -114,11 +122,8 @@ function App() {
           path="/detail/:id"
           element={<ProductDetails />}
         />
-
       </Routes>
-
     </BrowserRouter>
-
   );
 }
 
